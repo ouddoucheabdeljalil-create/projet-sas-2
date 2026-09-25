@@ -38,20 +38,34 @@ do{
 
     }
 }while(option !==0);
-
+    console.log(condidats)
     // function pour ajouter un nouveau candidat
 
 function ajouterCandidat(){
-    const candidat = {
-        cin: prompt("entez votre CIN :"),
-        prenom: prompt("entez votre prenom :"),
-        nom: prompt("entez votre nom :"),
-        parti: prompt("entez votre parti politique :"),
-        age: prompt("entez votre age :"),
-        electeurs: [] 
+         let a = prompt("entez votre CIN :");
+     const candidat = {
+        
+     }
+     let b = false ;
+   for(let i = 0 ; i < condidats.length ; i++){
+        if (a === condidats[i].cin){
+            b = true ;
+            break;
+        }
     }
+    if(b == true){
+        console.log("Désolé, ce candidat existe déjà ");
+    }
+    else{
+        candidat.cin = a,
+        candidat.prenom = prompt("entez votre prenom :"),
+        candidat.nom = prompt("entez votre nom :"),
+        candidat.parti = prompt("entez votre parti politique :"),
+        candidat.age = Number(prompt("entez votre age :")),
+        candidat.electeurs = [] 
+    }
+        
     condidats.push(candidat);
-   
 }
     // function pour ajouter plusieurs candidats à la fois
 
@@ -75,11 +89,11 @@ function AfficherListCandidats(){
     
 }
     //function pour voter pour un candidat 
-    
+
 function voter(){
     let cin = prompt("saisissez votre CIN :");
     for(let i = 0 ; i < condidats.length ; i++){
-        if(cin == condidats[i].)
+        if(cin == condidats[i].electeurs[i]){}
     }
 }
  
