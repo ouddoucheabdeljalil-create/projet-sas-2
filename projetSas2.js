@@ -1,6 +1,7 @@
 const prompt = require('prompt-sync')();
 const condidats = [];
 
+
 let option = 10;
 do{
     console.log("-----------------------");
@@ -33,19 +34,26 @@ do{
             console.log("0. Quitter ");
             console.log(Number(prompt("entez le choix :")));
             break;
-        case 4:
+        case 4: //Voter pour un candidat
+            console.log("-----------------------");
+            console.log("Voter pour un candidat")
+            console.log("-----------------------");
+            vote();
+            console.log("0. Quitter ");
+            console.log(Number(prompt("entez le choix :")));
+            break;
+        case 5:
+            
 
 
     }
-}while(option !==0);
-    console.log(condidats)
+}while(option !== 0);
+   
     // function pour ajouter un nouveau candidat
 
 function ajouterCandidat(){
          let a = prompt("entez votre CIN :");
-     const candidat = {
-        
-     }
+      const candidat = {}
      let b = false ;
    for(let i = 0 ; i < condidats.length ; i++){
         if (a === condidats[i].cin){
@@ -62,7 +70,7 @@ function ajouterCandidat(){
         candidat.nom = prompt("entez votre nom :"),
         candidat.parti = prompt("entez votre parti politique :"),
         candidat.age = Number(prompt("entez votre age :")),
-        candidat.electeurs = [] 
+        candidat.electeurs = ["j111","y222"]; 
     }
         
     condidats.push(candidat);
@@ -72,6 +80,7 @@ function ajouterCandidat(){
 function ajouterPluCandidats(){
     let number = Number(prompt("entez le nombre de candidats :"));
     for( let i =1 ; i <= number ; i++){
+        console.log("-----------------------");
         console.log("entez les information de candidat ", i);
         ajouterCandidat();
     }
@@ -80,6 +89,15 @@ function ajouterPluCandidats(){
     //function pour afficher la liste des candidats
 
 function AfficherListCandidats(){
+
+    for(let i = 0 ; i < condidats.length ; i++){
+    for(let j = 0 ; j < condidats.length - i -1 ;j++){
+    if (condidats[j].electeurs.length < condidats[j+1].electeurs.length ){
+        let swap = condidats[j+1];
+        condidats[j+1]= condidats[j];
+        condidats[j] = swap
+    }}}
+
     for (let i = 0; i < condidats.length;i++ ){
         for(const key in condidats[i]){
             console.log(`${key} : ${condidats[i][key]}`)
@@ -90,10 +108,37 @@ function AfficherListCandidats(){
 }
     //function pour voter pour un candidat 
 
-function voter(){
-    let cin = prompt("saisissez votre CIN :");
+function vote(){
+    let a = false;
+    let voterCin = prompt("saisissez votre CIN :");
+    let candidatCin = prompt("saisissez le CIN du candidat : ");
     for(let i = 0 ; i < condidats.length ; i++){
-        if(cin == condidats[i].electeurs[i]){}
+        
+        for( let j = 0 ;j < condidats[i].electeurs.length ; j++){
+        if(voterCin === condidats[i].electeurs[j]){
+           a = true ;  
+        }
+        }}
+    
+    for(let i = 0 ; i < condidats.length ; i++){
+    if(a == true){
+        console.log("!! vous n'avez pas le droit de voter deux foix !!");
+        break;
+        }
+        else{
+        
+            if(candidatCin === condidats[i].cin){
+                console.log("le vote a été un succès");
+                condidats[i].electeurs.push(voterCin);
+            
+            }
+            else{
+                console.log("Ce candidat n'existe pas !!");
+            
+            }
+
+   
+        }
     }
-}
+}    
  
