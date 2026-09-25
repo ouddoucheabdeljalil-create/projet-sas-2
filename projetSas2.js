@@ -1,19 +1,19 @@
 const prompt = require('prompt-sync')();
 const condidats = [ {
-        cin: "j555",
-        prenom: "dsgs",
-        nom: "dfsdf",
-        
-        age: 55,
-        electeurs: ["j123","f123"] 
+        cin: "MA123",
+        prenom: "yassin",
+        nom: "daghor",
+        parti: "cat",
+        age: 27,
+        electeurs: ["M1524","JE1954"] 
     },
     {
-        cin: "j154",
-        prenom: "dsgdds",
-        nom: "dfsdf",
-        
-        age: 55,
-        electeurs: ["dsdf","f123","sfsd","sdgds"] 
+        cin: "j1234",
+        prenom: "ahmed",
+        nom: "amghar",
+        parti: "",
+        age: 30,
+        electeurs: ["DM154","F2015","JY1452","A12584"] 
 
     },
      {
@@ -33,9 +33,15 @@ const condidats = [ {
         electeurs: ["dsdf",,"sfsd","sdgds"] 
 
     }];
+
+    function Quitter(){
+    console.log("\n 0. Quitter ");
+    console.log(Number(prompt("entez le choix :")))
+    }
     // function pour ajouter un nouveau candidat
 
 function ajouterCandidat(){
+    console.log("=== Ajouter un nouveau candidat ===")
          let a = prompt("entez votre CIN :");
       const candidat = {}
      let b = false ;
@@ -57,23 +63,26 @@ function ajouterCandidat(){
         candidat.electeurs = ["j111","y222"]; 
     }
         
-    condidats.push(candidat);
+    Quitter()
+    
 }
     // function pour ajouter plusieurs candidats à la fois
 
 function ajouterPluCandidats(){
+    console.log("=== Ajouter plusieurs candidats à la fois ===\n")
     let number = Number(prompt("entez le nombre de candidats :"));
     for( let i =1 ; i <= number ; i++){
         console.log("-----------------------");
         console.log("entez les information de candidat ", i);
         ajouterCandidat();
     }
-   
+    Quitter();
 }
     //function pour afficher la liste des candidats
 
 function AfficherListCandidats(){
-
+    console.log("=== Afficher la liste des candidats ===\n")
+    
     for(let i = 0 ; i < condidats.length ; i++){
     for(let j = 0 ; j < condidats.length - i -1 ;j++){
     if (condidats[j].electeurs.length < condidats[j+1].electeurs.length ){
@@ -88,11 +97,12 @@ function AfficherListCandidats(){
         }
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
     }
-    
+    Quitter
 }
     //function pour voter pour un candidat 
 
 function vote(){
+    console.log("=== voter pour un candidat ===\n")
     let a = false;
     let voterCin = prompt("saisissez votre CIN :");
     let candidatCin = prompt("saisissez le CIN du candidat : ");
@@ -124,6 +134,7 @@ function vote(){
    
         }
     }
+    Quitter();
 }    
         // function Modifier les informations d'un candidat
 
@@ -144,9 +155,26 @@ function vote(){
             condidats[index].age = Number(prompt("saisissez nouveau age de candidat :"))
             condidats[index].parti = prompt("saisissez nouveau parti politique de candidat : ")
         }
-         console.log("\n0. Quitter ");
-         console.log(Number(prompt("entez le choix :")));
+         Quitter();
     }
+        // function Supprimer un candidat
+
+    function Supprimer (){
+         console.log("\n=== Supprimer un candidat  ===\n")
+         let cin = prompt("saisissez le CIN du candidat ");
+        let index = -1
+        for (let i = 0 ; i < condidats.length ; i++){
+            if (cin === condidats[i].cin){
+               index = i
+            }}  
+        if (index === -1){
+            console.log("Ce candidat n'existe pas !!")
+        }
+        else{
+                condidats.splice(index);
+        console.log("Supprimé avec succès")
+        Quitter();
+    }}
 let option ;
 do{
     console.log("-----------------------");
@@ -157,42 +185,23 @@ do{
      option = Number(prompt("entez le choix :"))
     switch(option){
         case 1: // Ajouter un nouveau candidat
-            console.log("-----------------------");
-            console.log("Ajouter un nouveau candidat")
-            console.log("-----------------------");
             ajouterCandidat();
-            console.log("0. Quitter ");
-            console.log(Number(prompt("entez le choix :")))
             break;
         case 2: //Ajouter plusieurs candidats à ma fois
-            console.log("-----------------------");
-            console.log("Ajouter plusieurs candidats à ma fois")
-            console.log("-----------------------");
             ajouterPluCandidats();
-            console.log("0. Quitter ");
-            console.log(Number(prompt("entez le choix :")));
             break;
         case 3: //Afficher la liste des candidats
-            console.log("-----------------------");
-            console.log("Afficher la liste des candidats")
-            console.log("-----------------------");
             AfficherListCandidats();
-            console.log("0. Quitter ");
-            console.log(Number(prompt("entez le choix :")));
             break;
         case 4: //Voter pour un candidat
-            console.log("-----------------------");
-            console.log("Voter pour un candidat")
-            console.log("-----------------------");
             vote();
-            console.log("0. Quitter ");
-            console.log(Number(prompt("entez le choix :")));
             break;
         case 5:
             Modifier();
             break;
         case 6:
-            
+            Supprimer();
+            break;
 
     }
 }while(option !== 0);
