@@ -138,7 +138,8 @@ function vote(){
 }    
         // function Modifier les informations d'un candidat
 
-     function Modifier(){
+  
+   function Modifier(){
         console.log("\n")
         console.log("=== Modifier les informations d'un candidat ===\n")
         let cin = prompt("saisissez le CIN du candidat ");
@@ -167,7 +168,47 @@ function vote(){
                     console.log("le numéro est incorrect !!");
         }
     }
-    Quitter()
+    Quitter();
+}
+        // function Supprimer un candidat
+
+    function Supprimer (){
+         console.log("\n=== Supprimer un candidat  ===\n")
+         let cin = prompt("saisissez le CIN du candidat ");
+        let index = -1
+        for (let i = 0 ; i < condidats.length ; i++){
+            if (cin === condidats[i].cin){
+               index = i
+            }}  
+        if (index === -1){
+            console.log("Ce candidat n'existe pas !!")
+        }
+        else{
+                condidats.splice(index);
+        console.log("Supprimé avec succès")
+       
+    } 
+    Quitter();
+}
+        //function Rechercher des candidats
+function Rechercher(){
+    console.log("\n=== Rechercher des candidats  ===\n")
+    let nom = prompt("entez le nom de candidat : ");
+    let index = -1 ;
+    for(let i = 0; i < condidats.length ; i++){
+        if (nom === condidats[i].nom){ 
+           index = i}
+            
+    }
+    if ( index === -1){
+        console.log("Ce candidat n'existe pas !!");
+    }
+    else{
+       for ( let key in condidats[index]){
+        console.log(`${key} : ${condidats[index][key]}`)
+       }
+    }
+    Quitter();
 }
 let option =0 ;
 do{
@@ -190,12 +231,14 @@ do{
         case 4: //Voter pour un candidat
             vote();
             break;
-        case 5:
+        case 5:  //Modifier les informations d'un candidat 
             Modifier();
             break;
-        case 6:
+        case 6:  //Supprimer un candidat
             Supprimer();
             break;
+        case 7: //Rechercher des candidats
+            Rechercher();
 
     }
 }while(option !== 0);
