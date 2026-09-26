@@ -1,39 +1,75 @@
 const prompt = require('prompt-sync')();
-const condidats = [ {
-        cin: "MA123",
-        prenom: "yassin",
+const condidats = [
+    {
+        cin: "AB123456",
         nom: "daghor",
-        parti: "cat",
-        age: 27,
-        electeurs: ["M1524","JE1954"] 
+        prenom: "yassin",
+        partiPolitique: "Indépendant",
+        age: 40,
+        electeurs: [
+            "EL100001",
+            "EL100002",
+            "EL100003",
+            "EL100004",
+            "EL100005",
+            "EL100006",
+            "EL100007",
+            "EL100008",
+            "EL100009",
+            "EL100010"
+        ]
     },
+
     {
-        cin: "j1234",
-        prenom: "ahmed",
-        nom: "amghar",
-        parti: "",
-        age: 30,
-        electeurs: ["DM154","F2015","JY1452","A12584"] 
+        cin: "CD234567",
+        nom: "Alaoui",
+        prenom: "Yassine",
+        partiPolitique: "Parti A",
+        age: 35,
+        electeurs: [
+            "EL200001",
+            "EL200002",
+            "EL200003",
+            "EL200004",
+            "EL200005",
+            "EL200006",
+            "EL200007"
+        ]
+    },
 
-    },
-     {
-        cin: "j555",
-        prenom: "dsgs",
-        nom: "dfsdf",
-        
-        age: 55,
-        electeurs: ["f123"] 
-    },
     {
-        cin: "j14",
-        prenom: "dsgdds",
-        nom: "dfsdf",
-        
-        age: 55,
-        electeurs: ["dsdf",,"sfsd","sdgds"] 
+        cin: "EF345678",
+        nom: "Bennani",
+        prenom: "Amine",
+        partiPolitique: "Parti B",
+        age: 45,
+        electeurs: [
+            "EL300001",
+            "EL300002",
+            "EL300003",
+            "EL300004",
+            "EL300005"
+        ]
+    },
 
-    }];
-
+    {
+        cin: "GH456789",
+        nom: "El Idrissi",
+        prenom: "Omar",
+        partiPolitique: "Parti A",
+        age: 38,
+        electeurs: [
+            "EL400001",
+            "EL400002",
+            "EL400003",
+            "EL400004",
+            "EL400005",
+            "EL400006",
+            "EL400007",
+            "EL400008"
+        ]}
+    ]
+    
     function Quitter(){
     console.log("\n 0. Quitter ");
     console.log(Number(prompt("entez le choix :")))
@@ -62,8 +98,8 @@ function ajouterCandidat(){
         candidat.age = Number(prompt("entez votre age :")),
         candidat.electeurs = ["j111","y222"]; 
     }
-        
-    Quitter()
+        condidats.push(candidat)
+    
     
 }
     // function pour ajouter plusieurs candidats à la fois
@@ -162,7 +198,7 @@ function vote(){
                     condidats[index].age = parseInt(prompt("saisissez nouveau age de candidat :"))
                     break;
                 case 2:
-                    condidats[index].parti = prompt("saisissez nouveau parti politique de candidat : ")
+                    condidats[index].partiPolitique = prompt("saisissez nouveau parti politique de candidat : ")
                     break;
                 default:
                     console.log("le numéro est incorrect !!");
@@ -210,6 +246,12 @@ function Rechercher(){
     }
     Quitter();
 }
+    // function de calcul de nombre de candidat
+function countCandidats(){
+    let countCandidat = condidats.length;
+    let x = console.log(`\nNomber de candidats : ${countCandidat}`);
+    return x;
+}
 let option =0 ;
 do{
     console.log("-----------------------");
@@ -239,6 +281,9 @@ do{
             break;
         case 7: //Rechercher des candidats
             Rechercher();
+            break;
+        case 8 : //Statistiques de l'élection 
+           
 
     }
 }while(option !== 0);
