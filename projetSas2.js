@@ -66,7 +66,7 @@ const condidats = [
     
     function Quitter(){
     console.log("\n 0. Quitter ");
-    console.log(Number(prompt("entez le choix :")))
+    Number(prompt("entez le choix : "))
     }
     // function pour ajouter un nouveau candidat
 
@@ -108,11 +108,39 @@ function ajouterPluCandidats(){
     }
     Quitter();
 }
+    // function afficher parti politique
+
+function AfficherPartiPolitique(){
+    const x = {}
+    for (let i = 0 ; i < condidats.length ; i++){
+        if(x[condidats[i].partiPolitique] === undefined){
+            x[condidats[i].partiPolitique] = [condidats[i].nom]
+        }
+        else {
+            x[condidats[i].partiPolitique].push(condidats[i].nom)
+        }
+    }
+    console.log("\n=== les partis politiques et leurs candidat ===")
+    for(let key in x){
+        console.log("=====================");
+        console.log(` ${key} :`);
+        for(let i = 0 ; i < x[key].length ; i++){
+            console.log(`- ${x[key][i]}`)
+        }
+    }
+}
+
     //function pour afficher la liste des candidats
 
 function AfficherListCandidats(){
-    console.log("=== Afficher la liste des candidats ===\n")
-
+   
+    let option = 1;
+    do{
+         console.log("=== Afficher la liste des candidats ===\n");
+    console.log("1. Candidats par nombre de votes\n2.  Les candidats d'un parti politique\n3. Quitter ")
+        option = parseInt(prompt("entez le choix"));
+        switch(option){
+        case 1:
     for(let i = 0 ; i < condidats.length ; i++){
     for(let j = 0 ; j < condidats.length - i -1 ;j++){
     if (condidats[j].electeurs.length < condidats[j+1].electeurs.length ){
@@ -127,7 +155,15 @@ function AfficherListCandidats(){
         }
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
     }
-    Quitter();
+    Quitter()
+    break;
+    case 2:
+        AfficherPartiPolitique();
+        Quitter()
+    break;
+}
+    
+}while(option !== 0)
 }
     //function pour voter pour un candidat 
 
