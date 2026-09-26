@@ -4,7 +4,7 @@ const condidats = [
         cin: "AB123456",
         nom: "daghor",
         prenom: "yassin",
-        partiPolitique: "Indépendant",
+        partiPolitique: "Independant",
         age: 40,
         electeurs: [
             "EL101",
@@ -35,7 +35,7 @@ const condidats = [
         cin: "EF345678",
         nom: "Bennani",
         prenom: "Amine",
-        partiPolitique: "Parti B",
+        partiPolitique: "Parti A",
         age: 45,
         electeurs: [
             "EL301",
@@ -50,7 +50,7 @@ const condidats = [
         cin: "GH456789",
         nom: "El Idrissi",
         prenom: "Omar",
-        partiPolitique: "Parti A",
+        partiPolitique: "Parti C",
         age: 38,
         electeurs: [
             "EL401",
@@ -88,7 +88,7 @@ function ajouterCandidat(){
         candidat.cin = a,
         candidat.prenom = prompt("entez votre prenom :"),
         candidat.nom = prompt("entez votre nom :"),
-        candidat.parti = prompt("entez votre parti politique :"),
+        candidat.partiPolitique = prompt("entez votre parti politique :"),
         candidat.age = Number(prompt("entez votre age :")),
         candidat.electeurs = ["j111","y222"]; 
     }
@@ -246,8 +246,38 @@ function countNomberElecteur(){
         countElecteur += condidats[i].electeurs.length;
     }
     let x = console.log(`Nombre total des votes : ${countElecteur}`);
+    console.log("-----------------------");
     return x ;
 }
+
+function topCandidats(){
+        for(let i = 0 ; i < condidats.length ; i++){
+    for(let j = 0 ; j < condidats.length - i -1  ;j++){
+    if (condidats[j].electeurs.length < condidats[j+1].electeurs.length ){
+        let swap = condidats[j+1];
+        condidats[j+1]= condidats[j];
+        condidats[j] = swap
+    }}}
+    console.log("Les trios meilleurs candidats :\n")
+        for(let i =0 ; i < 3 ; i++){
+            console.log(`CIN :${condidats[i].cin}\nnom : ${condidats[i].nom}\nprenom : ${condidats[i].prenom}\nparti Politique : ${condidats[i].partiPolitique}\nage : ${condidats[i].age}\nelecteurs : ${condidats[i].electeurs}`)
+            console.log("------------------")
+        }
+    }
+ function countParti(){
+       const partiPoli = {};
+       for(let i = 0; i < condidats.length ;i++){
+        if (partiPoli[condidats[i].partiPolitique] === undefined){
+            partiPoli[condidats[i].partiPolitique] = 1;
+        }
+        else{
+            partiPoli[condidats[i].partiPolitique] += 1
+        }
+       }
+       
+       for(let key in partiPoli){
+        console.log(` ${key} : ${partiPoli[key]}`)
+       }}
 let option =0 ;
 do{
     console.log("-----------------------");
@@ -281,6 +311,9 @@ do{
         case 8 : //Statistiques de l'élection 
            countCandidats();
            countNomberElecteur();
+           topCandidats();
+           countParti();
+           Quitter();
 
     }
 }while(option !== 0);
