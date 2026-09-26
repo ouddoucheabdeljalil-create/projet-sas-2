@@ -82,7 +82,7 @@ function ajouterPluCandidats(){
 
 function AfficherListCandidats(){
     console.log("=== Afficher la liste des candidats ===\n")
-    
+
     for(let i = 0 ; i < condidats.length ; i++){
     for(let j = 0 ; j < condidats.length - i -1 ;j++){
     if (condidats[j].electeurs.length < condidats[j+1].electeurs.length ){
@@ -97,7 +97,7 @@ function AfficherListCandidats(){
         }
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
     }
-    Quitter
+    Quitter();
 }
     //function pour voter pour un candidat 
 
@@ -138,7 +138,7 @@ function vote(){
 }    
         // function Modifier les informations d'un candidat
 
-  function Modifier(){
+     function Modifier(){
         console.log("\n")
         console.log("=== Modifier les informations d'un candidat ===\n")
         let cin = prompt("saisissez le CIN du candidat ");
@@ -152,30 +152,24 @@ function vote(){
             console.log("Ce candidat n'existe pas !!")
         }
         else{
-            condidats[index].age = Number(prompt("saisissez nouveau age de candidat :"))
-            condidats[index].parti = prompt("saisissez nouveau parti politique de candidat : ")
+            console.log("-----------------------");
+            console.log("1. Ajouter ou modifier l'àge :\n2. Ajouter ou modifier le parti politique : ")
+            console.log("-----------------------");
+            let choix = parseInt(prompt("entez le choix :"));
+            switch(choix){
+                case 1:
+                    condidats[index].age = parseInt(prompt("saisissez nouveau age de candidat :"))
+                    break;
+                case 2:
+                    condidats[index].parti = prompt("saisissez nouveau parti politique de candidat : ")
+                    break;
+                default:
+                    console.log("le numéro est incorrect !!");
         }
-         Quitter();
     }
-        // function Supprimer un candidat
-
-    function Supprimer (){
-         console.log("\n=== Supprimer un candidat  ===\n")
-         let cin = prompt("saisissez le CIN du candidat ");
-        let index = -1
-        for (let i = 0 ; i < condidats.length ; i++){
-            if (cin === condidats[i].cin){
-               index = i
-            }}  
-        if (index === -1){
-            console.log("Ce candidat n'existe pas !!")
-        }
-        else{
-                condidats.splice(index);
-        console.log("Supprimé avec succès")
-        Quitter();
-    }}
-let option ;
+    Quitter()
+}
+let option =0 ;
 do{
     console.log("-----------------------");
     console.log("        MENU")
