@@ -232,7 +232,7 @@ function vote(){
     Quitter();
 }
         // function comme splice
-        
+
 function likeSplice(arr , i){
     let arry = arr
     for(i; i < arry.length ; i++){
@@ -264,7 +264,7 @@ function likeSplice(arr , i){
 }
         //function Rechercher des candidats
 function Rechercher(){
-    console.log("\n=== Rechercher des candidats  ===\n")
+    console.log("\n=================== Rechercher des candidats  ====================\n")
     let nom = prompt("entez le nom de candidat : ");
     let index = -1 ;
     for(let i = 0; i < condidats.length ; i++){
@@ -286,7 +286,7 @@ function Rechercher(){
 function countCandidats(){
     let countCandidat = condidats.length;
     let x = console.log(`\nNomber de candidats : ${countCandidat}`);
-    console.log("-----------------------");
+    console.log("=================================================")
     return x;
 }
     //function calcul le nombre total des votes
@@ -296,7 +296,7 @@ function countNomberElecteur(){
         countElecteur += condidats[i].electeurs.length;
     }
     let x = console.log(`Nombre total des votes : ${countElecteur}`);
-    console.log("-----------------------");
+    console.log("=================================================")
     return x ;
 }
 
@@ -309,10 +309,13 @@ function topCandidats(){
         condidats[j] = swap
     }}}
     console.log("Les trios meilleurs candidats :\n")
+    console.log("=================================================")
         for(let i =0 ; i < 3 ; i++){
             console.log(`CIN :${condidats[i].cin}\nnom : ${condidats[i].nom}\nprenom : ${condidats[i].prenom}\nparti Politique : ${condidats[i].partiPolitique}\nage : ${condidats[i].age}\nelecteurs : ${condidats[i].electeurs}`)
-            console.log("------------------")
+            console.log("--------------------------------------------------")
         }
+        console.log("=================================================")
+
     }
  function countParti(){
        const partiPoli = {};
