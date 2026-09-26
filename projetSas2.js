@@ -7,16 +7,10 @@ const condidats = [
         partiPolitique: "Indépendant",
         age: 40,
         electeurs: [
-            "EL100001",
-            "EL100002",
-            "EL100003",
-            "EL100004",
-            "EL100005",
-            "EL100006",
-            "EL100007",
-            "EL100008",
-            "EL100009",
-            "EL100010"
+            "EL101",
+            "EL102",
+            "EL103",
+            
         ]
     },
 
@@ -27,13 +21,13 @@ const condidats = [
         partiPolitique: "Parti A",
         age: 35,
         electeurs: [
-            "EL200001",
-            "EL200002",
-            "EL200003",
-            "EL200004",
-            "EL200005",
-            "EL200006",
-            "EL200007"
+            "EL201",
+            "EL202",
+            "EL203",
+            "EL204",
+            "EL205",
+            "EL206",
+            "EL207"
         ]
     },
 
@@ -44,11 +38,11 @@ const condidats = [
         partiPolitique: "Parti B",
         age: 45,
         electeurs: [
-            "EL300001",
-            "EL300002",
-            "EL300003",
-            "EL300004",
-            "EL300005"
+            "EL301",
+            "EL302",
+            "EL303",
+            "EL304",
+            "EL305"
         ]
     },
 
@@ -59,14 +53,14 @@ const condidats = [
         partiPolitique: "Parti A",
         age: 38,
         electeurs: [
-            "EL400001",
-            "EL400002",
-            "EL400003",
-            "EL400004",
-            "EL400005",
-            "EL400006",
-            "EL400007",
-            "EL400008"
+            "EL401",
+            "EL402",
+            "EL403",
+            "EL404",
+            "EL405",
+            "EL406",
+            "EL407",
+            "EL408"
         ]}
     ]
     
@@ -139,39 +133,31 @@ function AfficherListCandidats(){
 
 function vote(){
     console.log("=== voter pour un candidat ===\n")
-    let a = false;
+    let a = -1;
     let voterCin = prompt("saisissez votre CIN :");
     let candidatCin = prompt("saisissez le CIN du candidat : ");
     for(let i = 0 ; i < condidats.length ; i++){
         
         for( let j = 0 ;j < condidats[i].electeurs.length ; j++){
         if(voterCin === condidats[i].electeurs[j]){
-           a = true ;  
-        }
-        }}
-    
-    for(let i = 0 ; i < condidats.length ; i++){
-    if(a == true){
-        console.log("!! vous n'avez pas le droit de voter deux foix !!");
-        break;
+           console.log("!! vous n'avez pas le droit de voter deux foix !!");
         }
         else{
-        
-            if(candidatCin === condidats[i].cin){
+             a = i ;
+        }
+        }}
+    if(a !== -1){
+       if(candidatCin === condidats[a].cin){
                 console.log("le vote a été un succès");
-                condidats[i].electeurs.push(voterCin);
+                condidats[a].electeurs.push(voterCin);
             
             }
             else{
                 console.log("Ce candidat n'existe pas !!");
-            
             }
-
-   
         }
+        Quitter();
     }
-    Quitter();
-}    
         // function Modifier les informations d'un candidat
 
   
@@ -246,11 +232,21 @@ function Rechercher(){
     }
     Quitter();
 }
-    // function de calcul de nombre de candidat
+    // function calcul le nombre de candidat
 function countCandidats(){
     let countCandidat = condidats.length;
     let x = console.log(`\nNomber de candidats : ${countCandidat}`);
+    console.log("-----------------------");
     return x;
+}
+    //function calcul le nombre total des votes
+function countNomberElecteur(){
+    let countElecteur = 0;
+    for(let i =0; i < condidats.length ; i++){
+        countElecteur += condidats[i].electeurs.length;
+    }
+    let x = console.log(`Nombre total des votes : ${countElecteur}`);
+    return x ;
 }
 let option =0 ;
 do{
@@ -283,7 +279,8 @@ do{
             Rechercher();
             break;
         case 8 : //Statistiques de l'élection 
-           
+           countCandidats();
+           countNomberElecteur();
 
     }
 }while(option !== 0);
