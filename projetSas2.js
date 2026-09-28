@@ -205,9 +205,9 @@ let voterCin = prompt("saisissez votre CIN :");
          
     }  
     else{
-        console.log("--------------------------") 
-        console.log("| le vote a été un succès |");
-        console.log("--------------------------") 
+        console.log("--------------------------------------") 
+        console.log("| Le vote a été effectué avec succès |");
+        console.log("--------------------------------------") 
 
             condidats[y].electeurs.push(voterCin)
             
@@ -296,10 +296,9 @@ function Rechercher(){
         console.log("Ce candidat n'existe pas !!");
     }
     else{
-       for ( let key in condidats[index]){
-        console.log(`${key} : ${condidats[index][key]}`)
+       console.log(`CIN : ${condidats[index].cin}\nNom : ${condidats[index].nom}\nPrenom : ${condidats[index].prenom}\npartiPolitique : ${condidats[index].partiPolitique}\nAge : ${condidats[index].age}\nElecteurs : ${condidats[index].electeurs.length}`)
        }
-    }
+    
     Quitter();
 }
     // function calcul le nombre de candidat
@@ -355,8 +354,8 @@ do{
     console.log("=============================================================");
     console.log("                            MENU")
     console.log("=============================================================");
-    console.log(`1. Ajouter un nouveau candidat\n2. Ajouter plusieurs condidats à la fois\n3 .Afficher la liste des candidats`)
-    console.log("4. Voter pour un candidat\n5. Modifier les informations d'un candidat\n6. Supprimer un candidat\n7. Rechercher des candidats\n8. Statistiques de l'élection")
+    console.log(`1. Ajouter un nouveau candidat\n2. Ajouter plusieurs condidats à la fois\n3. Afficher la liste des candidats`)
+    console.log("4. Voter pour un candidat\n5. Modifier les informations d'un candidat\n6. Supprimer un candidat\n7. Rechercher des candidats\n8. Statistiques de l'élection\n0. Quitter")
      option = Number(prompt("entez le choix :"))
     switch(option){
         case 1: // Ajouter un nouveau candidat
