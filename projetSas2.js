@@ -3,9 +3,9 @@ const condidats = [
     {
         cin: "A1234",
         nom: "daghor",
-        prenom: "yassin",
+        prenom: "ahmed",
         partiPolitique: "Independant",
-        age: 40,
+        age: 28,
         electeurs: [
             "EL101",
             "EL102",
@@ -71,7 +71,7 @@ const condidats = [
     // function pour ajouter un nouveau candidat
 
 function ajouterCandidat(){
-         let a = prompt("entez votre CIN :");
+         let a = prompt("saisissez votre CIN : ");
       const candidat = {}
      let b = false ;
    for(let i = 0 ; i < condidats.length ; i++){
@@ -89,7 +89,7 @@ function ajouterCandidat(){
         candidat.nom = prompt("entez votre nom :"),
         candidat.partiPolitique = prompt("entez votre parti politique :"),
         candidat.age = Number(prompt("entez votre age :")),
-        candidat.electeurs = ["j111","y222"]; 
+        candidat.electeurs = []; 
     }
         condidats.push(candidat)
     
@@ -172,30 +172,47 @@ function AfficherListCandidats(){
     //function pour voter pour un candidat 
 
 function vote(){
-    console.log("=================== voter pour un candidat ===================\n")
-    let index = -1;
-    let voterCin = prompt("saisissez votre CIN :");
-    let candidatCin = prompt("saisissez le CIN du candidat : ");
+let x = false;
+let voterCin = prompt("saisissez votre CIN :");
+    
     for(let i = 0 ; i < condidats.length ; i++){
         
         for( let j = 0 ;j < condidats[i].electeurs.length ; j++){
         if(voterCin === condidats[i].electeurs[j]){
-           console.log("!! vous n'avez pas le droit de voter deux foix !!");
+           x = true;
            break;
+            
+        }}}
+        
+        if (x === true){
+                    console.log(" ---------------------------------------------------") 
+
+            return console.log("| !! vous n'avez pas le droit de voter deux foix !! |\n ---------------------------------------------------");
+        } 
+        let candidatCin = prompt("saisissez le CIN du candidat : ");
+
+        let y = -1 ;
+    for(let i = 0 ; i < condidats.length ; i++){
+        if (candidatCin === condidats[i].cin){
+            y = i
+
         }
-        else{
-             index = i ;
-        }
-        }}
-       if(candidatCin === condidats[index].cin){
-                console.log("le vote a été un succès");
-                condidats[index].electeurs.push(voterCin);
-        }
-        else{
-            console.log("Ce candidat n'existe pas !!");
-        }
-        Quitter();
+        
     }
+    if(y === -1){
+        console.log("------------------------------") 
+        return console.log("| Ce candidat n'existe pas !! |\n------------------------------");
+         
+    }  
+    else{
+        console.log("--------------------------") 
+        console.log("| le vote a été un succès |");
+        console.log("--------------------------") 
+
+            condidats[y].electeurs.push(voterCin)
+            
+    }
+}
         // function Modifier les informations d'un candidat
 
   
@@ -289,7 +306,7 @@ function Rechercher(){
 function countCandidats(){
     let countCandidat = condidats.length;
     let x = console.log(`\nNomber de candidats : ${countCandidat}`);
-    console.log("=================================================")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     return x;
 }
     //function calcul le nombre total des votes
@@ -299,7 +316,7 @@ function countNomberElecteur(){
         countElecteur += condidats[i].electeurs.length;
     }
     let x = console.log(`Nombre total des votes : ${countElecteur}`);
-    console.log("=================================================")
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     return x ;
 }
 
@@ -312,14 +329,12 @@ function topCandidats(){
         condidats[j] = swap
     }}}
     console.log("Les trios meilleurs candidats :\n")
-    console.log("=================================================")
     
         for(let i =0 ; i < 3 && i < condidats.length; i++){
             console.log(`CIN :${condidats[i].cin}\nnom : ${condidats[i].nom}\nprenom : ${condidats[i].prenom}\nparti Politique : ${condidats[i].partiPolitique}\nage : ${condidats[i].age}\nelecteurs : ${condidats[i].electeurs.length}`)
             console.log("--------------------------------------------------")
         }
-        console.log("=================================================")
-
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     }
  function countParti(){
        const partiPoli = {};
@@ -331,7 +346,6 @@ function topCandidats(){
             partiPoli[condidats[i].partiPolitique] += 1
         }
        }
-       
        for(let key in partiPoli){
         console.log(` ${key} : ${partiPoli[key]} candidat(s)`);
         console.log("--------------------------------------------------") 
@@ -368,6 +382,7 @@ do{
             Rechercher();
             break;
         case 8 : //Statistiques de l'élection 
+        console.log("\n=========== Statistiques de l'élection ===============")
            countCandidats();
            countNomberElecteur();
            topCandidats();
@@ -376,7 +391,6 @@ do{
            break;
         default : 
             console.log("\nsaisissez l'une des options !!")
-
     }
 }while(option !== 0);
  
